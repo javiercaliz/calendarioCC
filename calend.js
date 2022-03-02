@@ -11,10 +11,11 @@ function ingresarFecha() {
     calcular(inicio);
 }
 
-function vacaciones() {
+function vacaciones(fecha) {
 
     //lista donde se van a guardar los días de vacaciones
-    let vacaciones = [];
+    var vacaciones = [];
+    var validacion = true;
 
     //vacaciones de 2021
     let inicioVacaciones2021 = new Date('2021-12-23');
@@ -44,14 +45,22 @@ function vacaciones() {
         aux2.setDate(aux2.getDate() + 1);
     }
 
-    //devolvemos el conjunto de vacaciones
-    return vacaciones;
+    //analizamos si la fecha está en el conjunto
+    for (const x of vacaciones) {
+        if (x.getTime() == fecha.getTime()) {
+            validacion = false;
+        }
+    }
+
+    //devolvemos el resultado
+    return validacion;
 
 }
 
-function feriados() {
+function feriados(fecha) {
     //conjunto de feriados
-    let feriados = [];
+    var feriados = [];
+    var validacion = true;
     //carga manual de feriados
     //*****FERIADOS 2021*****
     feriados.push(new Date('2021-10-08'));//Puente
@@ -89,12 +98,22 @@ function feriados() {
         x.setDate(x.getDate() + 1);
     });
 
-    return feriados;
+    //analizamos si la fecha está en el conjunto
+    for (const x of feriados) {
+        if (x.getTime() == fecha.getTime()) {
+            validacion = false;
+        }
+    }
+
+    //devolvemos el resultado
+    return validacion;
 
 }
 
 function diaDeCursado(fecha) {
-    if (fecha.getDay == 6 || fecha.getDay == 5 || fecha.getDay == 4) {
+    var aux = new Date();
+    aux = fecha;
+    if (aux.getDay() == 0 || aux.getDay() == 6 || aux.getDay() == 5) {
         return false;
     } else {
         return true;
@@ -103,15 +122,15 @@ function diaDeCursado(fecha) {
 
 function calcular(inicio) {
 
-    let finCurso = inicio;
+    var finCurso = new Date();
+    finCurso = inicio;
 
-    let clases = 0;
+    var clases = 0;
 
-    while (clases < 178) {
+    while (clases <= 178) {
         if (diaDeCursado(finCurso)) {
-            if (!feriados().includes(finCurso)) {
-                if (!vacaciones().includes(finCurso)) {
-
+            if (feriados(finCurso)) {
+                if (vacaciones(finCurso)) {
                     informe(clases, finCurso);
                     clases++;
                 }
@@ -123,12 +142,19 @@ function calcular(inicio) {
 }
 
 function crearFila(tabla, clases, fecha, contenido) {
+    var dia = fecha.getDate();
+    var mes = fecha.getMonth()+1;
+    var anio = fecha.getFullYear();
     var row = tabla.insertRow(-1);
+    var row2 = tabla.insertRow(-1);
+    var celdaa = row2.insertCell(0);
+    var celdab = row2.insertCell(1);
+    var celdac = row2.insertCell(2);
     var celda1 = row.insertCell(0);
     var celda2 = row.insertCell(1);
     var celda3 = row.insertCell(2);
-    celda1.innerHTML = clases + 1;
-    celda2.innerHTML = fecha.getDate() + '/' + fecha.getMonth() + '/' + fecha.getFullYear();
+    celda1.innerHTML = clases;
+    celda2.innerHTML = dia + '/' + mes + '/' + anio;
     celda3.innerHTML = contenido;
 }
 
@@ -152,7 +178,7 @@ function crearTabla() {
     th1.appendChild(document.createTextNode('Día'));
     th2.appendChild(document.createTextNode('Fecha'));
     th3.appendChild(document.createTextNode('Contenido'));
-    table.className = 'table table-dark table-hover';
+    table.className = 'table table-dark table-striped table-hover';
     table.id = 'eventos';
 
 
