@@ -17,16 +17,16 @@
 
         <h1 class="text-light bg-dark d-flex justify-content-center">Comunidad Creciente</h1>
 
-        <div class="container mt-5 mb-5 d-flex justify-content-center">
-            <input type="date" name="calendario" id="fechaIngreso">            
+        <div class="container mt-5 mb-5 col-3 justify-content-center">
+            <input class="form-control" type="date" name="calendario" id="fechaIngreso">            
         </div>
 
         <div class="container mt-5 mb-5 d-flex justify-content-center">
-            <button onclick="pedirFecha()" type="button" class="btn btn-warning" id="calcular">Calcular</button>
+            <button type="button" onclick="ingresarFecha()" class="btn btn-warning" id="calcular">Calcular</button>
         </div>
         
-        <div class="container mt-5 mb-5 d-flex justify-content-center">
-            <table class="table table-light table-striped">
+        <div class="container w-50 mt-5  d-flex justify-content-center">
+            <table class="table table-bordered table-dark" id="informe">
                 <thead>
                     <tr>
                         <th scope="col">Día</th>
@@ -35,11 +35,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>13/09/2021</td>
-                        <td>OnBoarding</td>
-                    </tr>
+                    
                 </tbody>
             </table>
         </div>

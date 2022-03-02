@@ -3,8 +3,7 @@ function ingresarFecha() {
     //se toma la fecha del front y se corrige 1 día
     inicio = document.getElementById('fechaIngreso').valueAsDate;
     inicio.setDate(inicio.getDate() + 1);
-
-    return inicio;
+    calcular(inicio);
 }
 
 function vacaciones() {
@@ -27,7 +26,7 @@ function vacaciones() {
     //creamos unas fechas auxiliares para poder cambiarlas sin cambiar las originales
     let aux1 = new Date(inicioVacaciones2021);
     let aux2 = new Date(inicioVacaciones2022);
-  
+
 
     //agregamos al conjunto las vacaciones 2021
     while (aux1.getDate() != finVacaciones2021.getDate()) {
@@ -82,7 +81,7 @@ function feriados() {
     feriados.push(new Date('2023-12-08'));//Inmaculada concepción de María
 
     feriados.forEach(x => {
-        x.setDate(x.getDate()+1);
+        x.setDate(x.getDate() + 1);
     });
 
     return feriados;
@@ -97,6 +96,129 @@ function diaDeCursado(fecha) {
     }
 }
 
+function calcular(inicio) {
+
+    let finCurso = inicio;
+
+    let clases = 0;
+
+    while (clases < 178) {
+        if (diaDeCursado(finCurso)) {
+            if (!feriados().includes(finCurso)) {
+                if (!vacaciones().includes(finCurso)) {
+
+                    informe(clases, finCurso);
+                    clases++;
+                }
+            }
+        }
+        finCurso.setDate(finCurso.getDate() + 1);
+    }
+
+}
+
+function crearFila(tabla, clases, fecha, contenido) {
+    var row = tabla.insertRow(-1);
+    var celda1 = row.insertCell(0);
+    var celda2 = row.insertCell(1);
+    var celda3 = row.insertCell(2);
+    celda1.innerHTML = clases + 1;
+    celda2.innerHTML = fecha.getDate()+'/'+fecha.getMonth()+'/'+fecha.getFullYear();
+    celda3.innerHTML = contenido;
+}
+
+function informe(clases, fecha) {
+    var tabla = document.getElementById("informe");
+    switch (clases) {
+        case 0:
+            crearFila(tabla, clases, fecha, "OnBoarding");
+            break;
+        case 3:
+            crearFila(tabla, clases, fecha, "Repaso Guía 1");
+            break;
+        case 11:
+            crearFila(tabla, clases, fecha, "Repaso Guía 2");
+            break;
+        case 17:
+            crearFila(tabla, clases, fecha, "Repaso Guía 3");
+            break;
+        case 26:
+            crearFila(tabla, clases, fecha, "Repaso PseInt");
+            break;
+        case 27:
+            crearFila(tabla, clases, fecha, "Integrador PseInt");
+            break;
+        case 38:
+            crearFila(tabla, clases, fecha, "Repaso Java Intro");
+            break;
+        case 47:
+            crearFila(tabla, clases, fecha, "Repaso POO 1º Parte");
+            break;
+        case 58:
+            crearFila(tabla, clases, fecha, "Repaso POO 2ºParte");
+            break;
+        case 59:
+            crearFila(tabla, clases, fecha, "Git primera parte");
+            break;
+        case 60:
+            crearFila(tabla, clases, fecha, "Git primera parte");
+            break;
+        case 69:
+            crearFila(tabla, clases, fecha, "Repaso Colecciones");
+            break;
+        case 78:
+            crearFila(tabla, clases, fecha, "Repaso Relaciones");
+            break;
+        case 87:
+            crearFila(tabla, clases, fecha, "Repaso Herencia");
+            break;
+        case 90:
+            crearFila(tabla, clases, fecha, "Repaso Excepciones");
+            break;
+        case 99:
+            crearFila(tabla, clases, fecha, "Repaso MySQL");
+            break;
+        case 100:
+            crearFila(tabla, clases, fecha, "Integrador Java + MySQL");
+            break;
+        case 108:
+            crearFila(tabla, clases, fecha, "Repaso JDBC");
+            break;
+        case 116:
+            crearFila(tabla, clases, fecha, "Repaso JPA");
+            break;
+        case 117:
+            crearFila(tabla, clases, fecha, "Git segunda parte");
+            break;
+        case 126:
+            crearFila(tabla, clases, fecha, "Repaso HTML");
+            break;
+        case 134:
+            crearFila(tabla, clases, fecha, "Repaso JavaScript");
+            break;
+        case 141:
+            crearFila(tabla, clases, fecha, "Repaso 1 de Spring");
+            break;
+        case 148:
+            crearFila(tabla, clases, fecha, "Repaso 2 de Spring");
+            break;
+        case 155:
+            crearFila(tabla, clases, fecha, "Repaso 3 de Spring");
+            break;
+        case 173:
+            crearFila(tabla, clases, fecha, "Repaso React");
+            break;
+        case 174:
+            crearFila(tabla, clases, fecha, "Inicio Repaso de Curso");
+            break;
+        case 178:
+            crearFila(tabla, clases, fecha, "Fin Del Curso");
+            break;
+        default:
+            break;
+    }
+
+}
 
 
 
