@@ -3,6 +3,11 @@ function ingresarFecha() {
     //se toma la fecha del front y se corrige 1 día
     inicio = document.getElementById('fechaIngreso').valueAsDate;
     inicio.setDate(inicio.getDate() + 1);
+    if (document.getElementById("eventos") != null) {
+        let aux = document.getElementById("eventos");
+        aux.parentElement.removeChild(aux);
+    }
+    crearTabla();
     calcular(inicio);
 }
 
@@ -123,12 +128,39 @@ function crearFila(tabla, clases, fecha, contenido) {
     var celda2 = row.insertCell(1);
     var celda3 = row.insertCell(2);
     celda1.innerHTML = clases + 1;
-    celda2.innerHTML = fecha.getDate()+'/'+fecha.getMonth()+'/'+fecha.getFullYear();
+    celda2.innerHTML = fecha.getDate() + '/' + fecha.getMonth() + '/' + fecha.getFullYear();
     celda3.innerHTML = contenido;
 }
 
+function crearTabla() {
+
+    let table = document.createElement('table')
+    let thead = document.createElement('thead')
+    let tbody = document.createElement('tbody')
+    let tr = document.createElement('tr')
+    let th1 = document.createElement('th')
+    let th2 = document.createElement('th')
+    let th3 = document.createElement('th')
+
+    document.getElementById('informe').appendChild(table);
+    table.append(thead);
+    table.append(tbody);
+    thead.append(tr);
+    tr.append(th1);
+    tr.append(th2);
+    tr.append(th3);
+    th1.appendChild(document.createTextNode('Día'));
+    th2.appendChild(document.createTextNode('Fecha'));
+    th3.appendChild(document.createTextNode('Contenido'));
+    table.className = 'table table-dark table-hover';
+    table.id = 'eventos';
+
+
+}
+
 function informe(clases, fecha) {
-    var tabla = document.getElementById("informe");
+
+    var tabla = document.getElementById("eventos");
     switch (clases) {
         case 0:
             crearFila(tabla, clases, fecha, "OnBoarding");
