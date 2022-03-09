@@ -277,7 +277,3 @@ function informe(clases, fecha) {
     }
 
 }
-
-
-
-
