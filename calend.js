@@ -18,7 +18,7 @@ function vacaciones(fecha) {
     var validacion = true;
 
     //vacaciones de 2021
-    let inicioVacaciones2021 = new Date('2021-12-23');
+    let inicioVacaciones2021 = new Date('2021-12-24');
     inicioVacaciones2021.setDate(inicioVacaciones2021.getDate() + 1);
     let finVacaciones2021 = new Date('2022-01-17');
     finVacaciones2021.setDate(finVacaciones2021.getDate() + 1);
@@ -99,7 +99,7 @@ function feriados(fecha) {
     });
 
     //analizamos si la fecha está en el conjunto
-    for (const x of feriados) {
+    for (let x of feriados) {
         if (x.getTime() == fecha.getTime()) {
             validacion = false;
         }
@@ -125,9 +125,9 @@ function calcular(inicio) {
     var finCurso = new Date();
     finCurso = inicio;
 
-    var clases = 0;
+    var clases = 1;
 
-    while (clases <= 178) {
+    while (clases < 179) {
         if (diaDeCursado(finCurso)) {
             if (feriados(finCurso)) {
                 if (vacaciones(finCurso)) {
@@ -188,10 +188,10 @@ function informe(clases, fecha) {
 
     var tabla = document.getElementById("eventos");
     switch (clases) {
-        case 0:
+        case 1:
             crearFila(tabla, clases, fecha, "OnBoarding");
             break;
-        case 3:
+        case 4:
             crearFila(tabla, clases, fecha, "Repaso Guía 1");
             break;
         case 11:
