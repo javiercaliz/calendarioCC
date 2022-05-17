@@ -15,18 +15,33 @@
 
     <div class="container-fluid bg-dark min-vh-100 " id="page"> 
 
-        <h1 class="display-3 text-light bg-dark d-flex justify-content-center">Comunidad Creciente</h1>
-
-        <div class="container mt-5 mb-5 col-3 justify-content-center">
+        <h1 class="display-5 text-light bg-dark d-flex justify-content-center" style="text-align: center;">Egg - Curso de Programación Cooperativa</h1>
+        <h5 style="font-weight: lighter;" class="mt-4 font-weight-light text-light d-flex justify-content-center">Ingresa la fecha en la que iniciaste el curso</h5>
+        <div class="container mt-3 mb-4 justify-content-center " style="width: 300px;">
             <input class="form-control" type="date" name="calendario" id="fechaIngreso" onkeypress="Javascript: if (event.keyCode==13) ingresarFecha();">            
         </div>
 
-        <div class="container mt-5 mb-5 d-flex justify-content-center">
+        <div class="container mt-4 mb-4 d-flex justify-content-center">
             <button type="button" onclick="ingresarFecha()" class="btn btn-warning" id="calcular">Calcular</button>
         </div>
         
-        <div class="container w-50 mt-5  d-flex justify-content-center" id="informe">
+  
+        
+        <div class="h3 text-light text-center container w-50 mt-5 mb-5 d-flex justify-content-center" id="informeResumido">
             
+        </div>
+
+        <div class="text-light container w-50 justify-content-center">
+            <section class="row opacity-50" >
+                <p> ¿No recuerdas cuando iniciaste el curso?
+                    Puedes verlo en el Aula Virtual !!
+                <br>1. Ve a tu perfil
+                <br>2. Haz click en el engranage que está arriba a la derecha 
+                <br>3. Tu fecha de inicio del curso es el campo "camada" de tu perfil de usuario</p>
+            </section>
+            <section class="row">
+                <img src="/1.gif" alt="">
+            </section>
         </div>
 
     </div>

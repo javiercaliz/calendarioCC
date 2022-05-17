@@ -7,7 +7,6 @@ function ingresarFecha() {
         let aux = document.getElementById("eventos");
         aux.parentElement.removeChild(aux);
     }
-    crearTabla();
     calcular(inicio);
 }
 
@@ -131,7 +130,7 @@ function calcular(inicio) {
         if (diaDeCursado(finCurso)) {
             if (feriados(finCurso)) {
                 if (vacaciones(finCurso)) {
-                    informe(clases, finCurso);
+                    informeResumido(clases, finCurso);
                     clases++;
                 }
             }
@@ -191,7 +190,7 @@ function informe(clases, fecha) {
         case 1:
             crearFila(tabla, clases, fecha, "OnBoarding");
             break;
-        case 4:
+        case 3:
             crearFila(tabla, clases, fecha, "Repaso Guía 1");
             break;
         case 11:
@@ -248,32 +247,38 @@ function informe(clases, fecha) {
         case 117:
             crearFila(tabla, clases, fecha, "Git segunda parte");
             break;
-        case 126:
-            crearFila(tabla, clases, fecha, "Repaso HTML");
+        case 123:
+            crearFila(tabla, clases, fecha, "Repaso HTML y CSS");
             break;
-        case 134:
+        case 131:
             crearFila(tabla, clases, fecha, "Repaso JavaScript");
             break;
-        case 141:
+        case 140:
             crearFila(tabla, clases, fecha, "Repaso 1 de Spring");
             break;
-        case 148:
+        case 146:            
             crearFila(tabla, clases, fecha, "Repaso 2 de Spring");
             break;
-        case 155:
+        case 152:
             crearFila(tabla, clases, fecha, "Repaso 3 de Spring");
             break;
-        case 173:
+        case 163:
             crearFila(tabla, clases, fecha, "Repaso React");
             break;
-        case 174:
-            crearFila(tabla, clases, fecha, "Inicio Repaso de Curso");
+        case 164:
+            crearFila(tabla, clases, fecha, "Repaso de Curso");
             break;
-        case 178:
-            crearFila(tabla, clases, fecha, "Fin Del Curso");
+        case 165:
+            crearFila(tabla, clases, fecha, "Integrador Final");
             break;
         default:
             break;
     }
 
 }
+
+function informeResumido(clases, fecha) {
+    if (clases == 165) {
+     document.getElementById("informeResumido").textContent = `Tu fecha de Exámen Final es el ${fecha.getDate()}/${fecha.getMonth()+1}/${fecha.getFullYear()}`;
+    }
+ }
